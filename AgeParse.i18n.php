@@ -37,6 +37,7 @@ $messages['en'] = array (
 	,'dd-single'     => 'day'
 	,'dd-plural'     => 'days'
 	,'answer-sep'    => ', '
+	,'ageparse-desc' => 'Calculate difference days, months, and years between two dates'
 );
  
 /** Message documentation (explain purpose of each message)
@@ -70,6 +71,7 @@ $messages['qqq'] = array (
 	,'dd-single'     => 'word for 1 day'
 	,'dd-plural'     => 'word for many days'
 	,'answer-sep'    => 'separate year, month, and day values in answer'
+	,'ageparse-desc' => 'Description for Special:Version'
 );
  
 /** Spanish (default)
@@ -90,18 +92,18 @@ $messages['es'] = array (
 	,'y'			 => 'y'
 	,'required-from' => 'FROM atributo es necesario (e.g. from="2009-01-12")'
 	,'required-to'   => 'TO atributo es necesario (e.g. from="2009-01-12")'
-	,'invalid-from'  => 'FROM fecha no es v‡lida: $1-$2-$3 (YYYY-MM-DD)'
-	,'invalid-to'    => 'TO fecha no es v‡lida: $1-$2-$3 (YYYY-MM-DD)'
+	,'invalid-from'  => 'FROM fecha no es vÃ¡lida: $1-$2-$3 (YYYY-MM-DD)'
+	,'invalid-to'    => 'TO fecha no es vÃ¡lida: $1-$2-$3 (YYYY-MM-DD)'
 	,'from-first'    => 'FROM ($1-$2-$3) fecha debe ocurrir antes de TO ($4-$5-$6) fecha'
 	,'same-day'      => 'FROM ($1) y TO ($2) fecha son los mismos'
 	,'syntax'        => '&lt;age from="yyyy-mm-dd" to="yyyy-mm-dd" [left="c"] [right="c"]&gt;&lt;/age&gt;'
-	,'catchall'      => 'Algo est‡ mal con la edad etiqueta; comprobar su sintaxis, coinciden con las comillas, que van y vuelven a los atributos son necesarios, la fecha debe tener el formato ISO-8601 (por ejemplo, AAAA-MM-DD), y de debe ser inferior a A.'
-	,'yy-single'     => 'a–os'
-	,'yy-plural'     => 'a–os'
+	,'catchall'      => 'Algo estÃ¡ mal con la edad etiqueta; comprobar su sintaxis, coinciden con las comillas, que van y vuelven a los atributos son necesarios, la fecha debe tener el formato ISO-8601 (por ejemplo, AAAA-MM-DD), y de debe ser inferior a A.'
+	,'yy-single'     => 'aÃ±os'
+	,'yy-plural'     => 'aÃ±os'
 	,'mm-single'     => 'mes'
 	,'mm-plural'     => 'mes'
-	,'dd-single'     => 'd’a'
-	,'dd-plural'     => 'd’a'
+	,'dd-single'     => 'dÃ­a'
+	,'dd-plural'     => 'dÃ­a'
 	,'answer-sep'    => ', '
 );
 
@@ -136,4 +138,5 @@ $messages['de'] = array (
 	,'dd-single'     => 'Tag'
 	,'dd-plural'     => 'Tage'
 	,'answer-sep'    => ', '
+	,'ageparse-desc' => 'Berechnet die Differenz zwischen zwei Datumsangaben'
 );
