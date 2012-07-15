@@ -22,7 +22,7 @@ if(!defined('MEDIAWIKI')){
 $wgExtensionCredits['parserhook'][] = array(
 		'path'          =>      __FILE__,
         'name'          =>      'AgeParse',
-        'version'       =>      '0.2',
+        'version'       =>      '0.3',
         'author'        =>      'Mark Daly, [http://www.daschmedia.de DaSch]',
         'url'           =>      'http://www.mediawiki.org/wiki/Extension:AgeParse',
         'descriptionmsg'=>      'ageparse-desc',
@@ -38,4 +38,4 @@ $wgExtensionMessagesFiles['AgeParse'] = $dir. '/AgeParse.i18n.php';
 $wgExtensionMessagesFiles['AgeParseMagic'] = $dir . '/AgeParse.i18n.magic.php';
 
 $wgAutoloadClasses['AgeParseHooks'] = "$dir/AgeParse.hooks.php";
-$wgHooks['ParserFirstCallInit'][] = 'AgeParse::wfAgeParse_Setup';
+$wgHooks['ParserFirstCallInit'][] = 'AgeParseHooks::wfAgeParse_Setup';
