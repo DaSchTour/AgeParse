@@ -25,7 +25,6 @@ $wgExtensionCredits['parserhook'][] = array(
         'version'       =>      '0.2',
         'author'        =>      'Mark Daly, [http://www.daschmedia.de DaSch]',
         'url'           =>      'http://www.mediawiki.org/wiki/Extension:AgeParse',
-        'description'   =>      'Calculate difference days, months, and years between two dates',
         'descriptionmsg'=>      'ageparse-desc',
 );
  
@@ -35,21 +34,15 @@ $wgExtensionCredits['parserhook'][] = array(
 **/
 $dir = dirname(__FILE__);
 
-$wgExtensionFunctions[] = 'wfAgeParse_Setup';
+$wgHooks['ParserFirstCallInit'][] = 'wfAgeParse_Setup';
  
-$wgHooks['LanguageGetMagic'][] = 'wfAgeParse_Magic';
+$wgExtensionMessagesFiles['AgeParse'] = $dir. '/AgeParse.i18n.php';
+$wgExtensionMessagesFiles['AgeParseMagic'] = $dir . 'AgeParse.i18n.magic.php';
+
  
-$wgExtensionMessagesFiles['age'] = $dir. '/AgeParse.i18n.php';
- 
-function wfAgeParse_Magic( &$magicWords, $langCode = "en" ) {
-	$magicWords['age'] = array( 0, 'age' );
+function wfAgeParse_Setup(&$parser) {
+	$parser->setFunctionHook( 'MAG_4SQ', 'wfAgeParse_Render');
 	return true;
-}
- 
-function wfAgeParse_Setup() {
-	wfLoadExtensionMessages( 'age' );
-	global $wgParser;
-	$wgParser->setFunctionHook( 'age', 'wfAgeParse_Render' );
 }
  
  
