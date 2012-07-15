@@ -41,7 +41,7 @@ $wgExtensionMessagesFiles['AgeParseMagic'] = $dir . 'AgeParse.i18n.magic.php';
 
  
 function wfAgeParse_Setup(&$parser) {
-	$parser->setFunctionHook( 'MAG_4SQ', 'wfAgeParse_Render');
+	$parser->setFunctionHook( 'MAG_AGEPARSE', 'wfAgeParse_Render');
 	return true;
 }
  
