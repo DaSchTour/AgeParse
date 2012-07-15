@@ -37,7 +37,7 @@ $dir = dirname(__FILE__);
 $wgHooks['ParserFirstCallInit'][] = 'wfAgeParse_Setup';
  
 $wgExtensionMessagesFiles['AgeParse'] = $dir. '/AgeParse.i18n.php';
-$wgExtensionMessagesFiles['AgeParseMagic'] = $dir . 'AgeParse.i18n.magic.php';
+$wgExtensionMessagesFiles['AgeParseMagic'] = $dir . '/AgeParse.i18n.magic.php';
 
  
 function wfAgeParse_Setup(&$parser) {
