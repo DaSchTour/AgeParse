@@ -2,8 +2,8 @@
 /** AgeParse MediaWiki Extension
  * Type: parser
  *
- * @author Mark Daly <research@chanur.com>
- * @version 0.1
+ * @author Mark Daly <research@chanur.com>, DaSch <dasch@daschmedia.de>
+ * @version 0.2
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
 **/
  
@@ -16,15 +16,13 @@ if(!defined('MEDIAWIKI')){
 	die(-1);
 }
  
-DEFINE('AGEPARSE_VERSION','0.2 2009-03-13');
- 
 /**
  * Identify the extension, version, author, etc
 **/
 $wgExtensionCredits['parserhook'][] = array(
 		'path'          =>      __FILE__,
         'name'          =>      'AgeParse',
-        'version'       =>      AGEPARSE_VERSION,
+        'version'       =>      '0.2',
         'author'        =>      'Mark Daly, [http://www.daschmedia.de DaSch]',
         'url'           =>      'http://www.mediawiki.org/wiki/Extension:AgeParse',
         'description'   =>      'Calculate difference days, months, and years between two dates',
@@ -35,11 +33,13 @@ $wgExtensionCredits['parserhook'][] = array(
 /**
  * Set up extension and messages
 **/
+$dir = dirname(__FILE__);
+
 $wgExtensionFunctions[] = 'wfAgeParse_Setup';
  
 $wgHooks['LanguageGetMagic'][] = 'wfAgeParse_Magic';
  
-$wgExtensionMessagesFiles['age'] = dirname(__FILE__) . '/AgeParse.i18n.php';
+$wgExtensionMessagesFiles['age'] = $dir. '/AgeParse.i18n.php';
  
 function wfAgeParse_Magic( &$magicWords, $langCode = "en" ) {
 	$magicWords['age'] = array( 0, 'age' );
@@ -56,7 +56,7 @@ function wfAgeParse_Setup() {
 /**
  * Define functions that do the actual calculations.
 /**/
-require( dirname(__FILE__) . '/AgeParse.body.php' );
+require( $dir . '/AgeParse.body.php' );
  
 /**
  * Parse out any arguments/attributes of the {{age}} call and calculate the age differece.

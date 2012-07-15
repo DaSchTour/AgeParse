@@ -1,3 +1,4 @@
+  == DESCRIPTION ==
  This extension calculates the number of years plus months plus days between two ISO-8601 formatted
  dates called FROM and TO. These values are specified as attributes to the {{#age}} function. All other
  attributes are optional, incuding:
@@ -28,3 +29,10 @@
  This extension cannot be 
   
  == INFO ==
+ 
+== AUTHOR ==
+Initial Version by: Mark Daly <research@chanur.com>
+Further maintaince: DaSch <dasch@daschmedia.de>
+
+== Licence ==
+http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
