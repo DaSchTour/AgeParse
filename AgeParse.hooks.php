@@ -41,22 +41,25 @@ class AgeParseHooks {
 	 
 		// get attributes from {{#age ...}} request using name=value pairs
 		foreach (func_get_args() as $arg) if (!is_object($arg)) {
-			if (preg_match('/^(.+?)\\s*=\\s*(.+)$/',$arg,$match)) $argv[$match[1]]=$match[2];
+			if (preg_match('/^(.+?)\\s*=\\s*(.+)$/',$arg,$match)) {
+				$argv[strtolower($match[1])]=$match[2];
+			}
 		}
-		if (!isset($argv[wfMsg('from')]))   $from   = $sToday; 		else $from   = trim($argv[wfMsg('from')]);
-		if (!isset($argv[wfMsg('to')]))     $to     = $sToday; 		else $to     = trim($argv[wfMsg('to')]);
-		if (!isset($argv[wfMsg('left')]))   $left   = '';      		else $left   = $argv[wfMsg('left')];		// do not trim; use as entered
-		if (!isset($argv[wfMsg('right')]))  $right  = '';      		else $right  = $argv[wfMsg('right')];		// do not trim; use as entered
-		if (!isset($argv[wfMsg('format')])) $format = wfMsg('ymd');	else $format = strtolower(trim($argv[wfMsg('format')]));
+		
+		if (!isset($argv['from']))  $from   = $sToday; 		else $from   = trim($argv['from']);
+		if (!isset($argv['to']))     $to     = $sToday; 		else $to     = trim($argv['to']);
+		if (!isset($argv['left']))   $left   = '';      		else $left   = $argv['left'];		// do not trim; use as entered
+		if (!isset($argv['right']))  $right  = '';      		else $right  = $argv['right'];		// do not trim; use as entered
+		if (!isset($argv['format'])) $format = 'ymd';			else $format = strtolower(trim($argv['format']));
 	 
-	 	if (isset($argv[wfMsg('zeronegatives')])) 
-			$zeronegatives = (strtolower(trim($argv[wfMsg('zeronegatives')])) == wfMsg('yes'));	// 'yes' == true; anything else == false;
+	 	if (isset($argv['zeronegatives'])) 
+			$zeronegatives = (strtolower(trim($argv['zeronegatives'])) == 'yes');	// 'yes' == true; anything else == false;
 	 
-		if (isset($argv[wfMsg('errbox')]))
-			$errbox = (strtolower(trim($argv[wfMsg('errbox')])) == wfMsg('yes')); // 'yes' == true; anything else == false
+		if (isset($argv['errbox']))
+			$errbox = (strtolower(trim($argv['errbox'])) == 'yes'); // 'yes' == true; anything else == false
 	 
 		// validate input
-		if ($format <> wfMsg('ymd') && $format <> wfMsg('ym') && $format <> wfMsg('y')) $format = wfMsg('ymd'); //use default if invalid
+		if ($format <> 'ymd' && $format <> 'ym' && $format <> 'y') $format = 'ymd'; //use default if invalid
 	 
 		$retval = calculateAge($from,$to,$format,$left,$right,$errbox,$zeronegatives);
 		return $retval;
