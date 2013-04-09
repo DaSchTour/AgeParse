@@ -107,15 +107,28 @@ function smoothdate ( $year, $month, $day ) {
 function date_difference ( $first, $second ) {
     $month_lengths = array (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 	$retval = "";
+	 
+	$firstTime  = new DateTime($first['year'].'-'.$first['month'].'-'.$first['day']); #mktime(0,0,0,$first['month'],$first['day'],$first['year']);
+	$secondTime = new DateTime($second['year'].'-'.$second['month'].'-'.$second['day']); #mktime(0,0,0,$second['month'],$second['day'],$second['year']);
+	$diff = $firstTime->diff($secondTime);
+/**
+	 echo '<pre>';print_r(array(
+	 'firstTime' => $firstTime,
+	 'secondTime' => $secondTime,
+	 'diff' => $diff
+	 ));echo '</pre>';
+**/
+	
     if (!checkdate($first['month'], $first['day'], $first['year'])) {
 		$retval = wfMsg('invalid-from',$first['year'],$first['month'],$first['day']);
 	} elseif (!checkdate($second['month'], $second['day'], $second['year'])) {
 		$retval = wfMsg('invalid-to',$second['year'],$second['month'],$second['day']);
-	} elseif (mktime(0,0,0,$first['month'],$first['day'],$first['year']) > mktime(0,0,0,$second['month'],$second['day'],$second['year'])) {
+	} elseif ($diff->format('%R%a') < 0) {
 		$retval = wfMsg('from-first',$first['year'], $first['month'], $first['day'], $second['year'], $second['month'], $second['day']);
 	} else {
         $start  = smoothdate ($first['year'],  $first['month'],  $first['day']);
         $target = smoothdate ($second['year'], $second['month'], $second['day']);
+		
         if ($start <= $target) {
             $add_year = 0;
             while (smoothdate ($first['year']+ 1, $first['month'], $first['day']) <= $target) {
