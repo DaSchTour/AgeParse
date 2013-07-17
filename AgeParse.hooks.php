@@ -7,7 +7,7 @@ $dir = dirname(__FILE__);
 require( $dir . '/AgeParse.body.php' );
 
 class AgeParseHooks {
-		function wfAgeParse_Setup(&$parser) {
+	public static function wfAgeParse_Setup(&$parser) {
 		$parser->setFunctionHook( 'MAG_AGEPARSE', 'AgeParseHooks::wfAgeParse_Render');
 		return true;
 	}
@@ -15,7 +15,7 @@ class AgeParseHooks {
 	/**
 	 * Parse out any arguments/attributes of the {{age}} call and calculate the age differece.
 	**/
-	function wfAgeParse_Render( &$parser ) {
+	public static function wfAgeParse_Render( &$parser ) {
 		global $wgAgeErrorBox;		// global setting to show errors in a distinct box site-wide by default; can be overridden by errbox="no" in each use
 		global $wgAgeDefaultToday;	// global setting to use current date if FROM or TO not specified site-wide by default
 		global $wgAgeZeroNegatives;	// global setting to use zero negative date differences

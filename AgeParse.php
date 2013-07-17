@@ -22,7 +22,7 @@ if(!defined('MEDIAWIKI')){
 $wgExtensionCredits['parserhook'][] = array(
 		'path'          =>      __FILE__,
         'name'          =>      'AgeParse',
-        'version'       =>      '0.3',
+        'version'       =>      '0.3.1',
         'author'        =>      'Mark Daly, [http://www.daschmedia.de DaSch]',
         'url'           =>      'http://www.mediawiki.org/wiki/Extension:AgeParse',
         'descriptionmsg'=>      'ageparse-desc',
