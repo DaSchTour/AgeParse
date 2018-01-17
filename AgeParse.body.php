@@ -10,13 +10,13 @@ function calculateAge($from,$to,$format,$left,$right,$errbox,$zeronegatives) {
  
 	// process the attributes
 	if (strlen($from) == 0) {
-		$retval = wfMsg('required-from');			// FROM is required, even if from $sToday
+		$retval = wfMessage('required-from')->text();			// FROM is required, even if from $sToday
 	} elseif (strlen($to) == 0) {
-		$retval = wfMsg('required-to');				// TO is required, event if from $sToday
+		$retval = wfMessage('required-to')->text();				// TO is required, event if from $sToday
 	} elseif ($from == $to) {
-		$retval = '0 ' . wfMsg('dd-plural');		// no need to calculate anything, they are the same date
+		$retval = '0 ' . wfMessage('dd-plural')->text();		// no need to calculate anything, they are the same date
 	} elseif ($zeronegatives && $to < $from) {
-		$retval = '0 ' . wfMsg('dd-plural');		// TO comes before FROM, so we use '0 days'
+		$retval = '0 ' . wfMessage('dd-plural')->text();		// TO comes before FROM, so we use '0 days'
 	} else {
 		$aDate = array();
 		$aDate = explode('-',$from);				// separate pages in format [<era>-]<yyyy>-<mm>-<dd>
@@ -36,17 +36,17 @@ function calculateAge($from,$to,$format,$left,$right,$errbox,$zeronegatives) {
 		if (is_array($diff)) { 			// got something, build answer
 			$bError = false;			// turn off error indicator
 			if ($diff['years'] > 0) {	// year included in any format
-				$retval .= $diff['years'] . ' ' . ($diff['years'] == 1 ? wfMsg('yy-single') : wfMsg('yy-plural'));
+				$retval .= $diff['years'] . ' ' . ($diff['years'] == 1 ? wfMessage('yy-single')->text() : wfMessage('yy-plural')->text());
 			}
  
-			if ($diff['months'] > 0 && ($format == wfMsg('ymd') || $format == wfMsg('ym'))) {
-				if (strlen($retval) > 0) $retval .= wfMsg('answer-sep');
-				$retval .= $diff['months'] . ' ' . ($diff['months'] == 1 ? wfMsg('mm-single') : wfMsg('mm-plural'));
+			if ($diff['months'] > 0 && ($format == wfMessage('ymd')->text() || $format == wfMessage('ym')->text())) {
+				if (strlen($retval) > 0) $retval .= wfMessage('answer-sep')->text();
+				$retval .= $diff['months'] . ' ' . ($diff['months'] == 1 ? wfMessage('mm-single')->text() : wfMessage('mm-plural')->text());
 			}
  
-			if ($diff['days'] > 0 && ($format == wfMsg('ymd'))) {
-				if (strlen($retval) > 0) $retval .= wfMsg('answer-sep');
-				$retval .= $diff['days'] . ' ' . ($diff['days'] == 1 ? wfMsg('dd-single') : wfMsg('dd-plural'));
+			if ($diff['days'] > 0 && ($format == wfMessage('ymd')->text())) {
+				if (strlen($retval) > 0) $retval .= wfMessage('answer-sep')->text();
+				$retval .= $diff['days'] . ' ' . ($diff['days'] == 1 ? wfMessage('dd-single')->text() : wfMessage('dd-plural')->text());
 			}
 		} else {
 			$retval = $diff; // some error message from date_difference()
@@ -55,13 +55,13 @@ function calculateAge($from,$to,$format,$left,$right,$errbox,$zeronegatives) {
  
 	// prepare answer
 	if (strlen($retval) == 0) 
-		$retval = wfMsg('catchall');
+		$retval = wfMessage('catchall')->text();
  
 	if (strlen($left) > 0 || strlen($right) > 0) 
 		$retval = $left . $retval . $right;
  
 	if ($bError && $errbox) 
-		$retval = '<div class="'.wfMsg('errorbox').'">'.$retval.'</div>';	// 'errorbox' is found in style sheet (CSS) so it is fixed (not translated)
+		$retval = '<div class="'.wfMessage('errorbox')->text().'">'.$retval.'</div>';	// 'errorbox' is found in style sheet (CSS) so it is fixed (not translated)
  
 	return $retval;
 }
@@ -108,11 +108,11 @@ function date_difference ( $first, $second ) {
     $month_lengths = array (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 	$retval = "";
     if (!checkdate($first['month'], $first['day'], $first['year'])) {
-		$retval = wfMsg('invalid-from',$first['year'],$first['month'],$first['day']);
+		$retval = wfMessage('invalid-from',$first['year'],$first['month'],$first['day'])->text();
 	} elseif (!checkdate($second['month'], $second['day'], $second['year'])) {
-		$retval = wfMsg('invalid-to',$second['year'],$second['month'],$second['day']);
+		$retval = wfMessage('invalid-to',$second['year'],$second['month'],$second['day'])->text();
 	} elseif (mktime(0,0,0,$first['month'],$first['day'],$first['year']) > mktime(0,0,0,$second['month'],$second['day'],$second['year'])) {
-		$retval = wfMsg('from-first',$first['year'], $first['month'], $first['day'], $second['year'], $second['month'], $second['day']);
+		$retval = wfMessage('from-first',$first['year'], $first['month'], $first['day'], $second['year'], $second['month'], $second['day'])->text();
 	} else {
         $start  = smoothdate ($first['year'],  $first['month'],  $first['day']);
         $target = smoothdate ($second['year'], $second['month'], $second['day']);
@@ -155,7 +155,7 @@ function date_difference ( $first, $second ) {
  
             $retval = array ('years' => $add_year, 'months' => $add_month, 'days' => $add_day);
         } else {
-			$retval = wfMsg('from-first',$first['year'], $first['month'], $first['day'], $second['year'], $second['month'], $second['day']);
+			$retval = wfMessage('from-first',$first['year'], $first['month'], $first['day'], $second['year'], $second['month'], $second['day'])->text();
 		}
     }// validation ok
  

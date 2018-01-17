@@ -43,20 +43,20 @@ class AgeParseHooks {
 		foreach (func_get_args() as $arg) if (!is_object($arg)) {
 			if (preg_match('/^(.+?)\\s*=\\s*(.+)$/',$arg,$match)) $argv[$match[1]]=$match[2];
 		}
-		if (!isset($argv[wfMsg('from')]))   $from   = $sToday; 		else $from   = trim($argv[wfMsg('from')]);
-		if (!isset($argv[wfMsg('to')]))     $to     = $sToday; 		else $to     = trim($argv[wfMsg('to')]);
-		if (!isset($argv[wfMsg('left')]))   $left   = '';      		else $left   = $argv[wfMsg('left')];		// do not trim; use as entered
-		if (!isset($argv[wfMsg('right')]))  $right  = '';      		else $right  = $argv[wfMsg('right')];		// do not trim; use as entered
-		if (!isset($argv[wfMsg('format')])) $format = wfMsg('ymd');	else $format = strtolower(trim($argv[wfMsg('format')]));
+		if (!isset($argv[wfMessage('from')->text()]))   $from   = $sToday; 		else $from   = trim($argv[wfMessage('from')->text()]);
+		if (!isset($argv[wfMessage('to')->text()]))     $to     = $sToday; 		else $to     = trim($argv[wfMessage('to')->text()]);
+		if (!isset($argv[wfMessage('left')->text()]))   $left   = '';      		else $left   = $argv[wfMessage('left')->text()];		// do not trim; use as entered
+		if (!isset($argv[wfMessage('right')->text()]))  $right  = '';      		else $right  = $argv[wfMessage('right')->text()];		// do not trim; use as entered
+		if (!isset($argv[wfMessage('format')->text()])) $format = wfMessage('ymd')->text();	else $format = strtolower(trim($argv[wfMessage('format')->text()]));
 	 
-	 	if (isset($argv[wfMsg('zeronegatives')])) 
-			$zeronegatives = (strtolower(trim($argv[wfMsg('zeronegatives')])) == wfMsg('yes'));	// 'yes' == true; anything else == false;
+	 	if (isset($argv[wfMessage('zeronegatives')->text()])) 
+			$zeronegatives = (strtolower(trim($argv[wfMessage('zeronegatives')->text()])) == wfMessage('yes')->text());	// 'yes' == true; anything else == false;
 	 
-		if (isset($argv[wfMsg('errbox')]))
-			$errbox = (strtolower(trim($argv[wfMsg('errbox')])) == wfMsg('yes')); // 'yes' == true; anything else == false
+		if (isset($argv[wfMessage('errbox')->text()]))
+			$errbox = (strtolower(trim($argv[wfMessage('errbox')->text()])) == wfMessage('yes')->text()); // 'yes' == true; anything else == false
 	 
 		// validate input
-		if ($format <> wfMsg('ymd') && $format <> wfMsg('ym') && $format <> wfMsg('y')) $format = wfMsg('ymd'); //use default if invalid
+		if ($format <> wfMessage('ymd')->text() && $format <> wfMessage('ym')->text() && $format <> wfMessage('y')->text()) $format = wfMessage('ymd')->text(); //use default if invalid
 	 
 		$retval = calculateAge($from,$to,$format,$left,$right,$errbox,$zeronegatives);
 		return $retval;
