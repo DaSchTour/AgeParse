@@ -10,13 +10,13 @@ function calculateAge($from,$to,$format,$left,$right,$errbox,$zeronegatives) {
  
 	// process the attributes
 	if (strlen($from) == 0) {
-		$retval = wfMessage('required-from')->text();			// FROM is required, even if from $sToday
+		$retval = wfMessage('required-from')->text();		// FROM is required, even if from $sToday
 	} elseif (strlen($to) == 0) {
-		$retval = wfMessage('required-to')->text();				// TO is required, event if from $sToday
+		$retval = wfMessage('required-to')->text();		// TO is required, event if from $sToday
 	} elseif ($from == $to) {
-		$retval = '0 ' . wfMessage('dd-plural')->text();		// no need to calculate anything, they are the same date
+		$retval = '0 ' . wfMessage('dd-plural')->text();	// no need to calculate anything, they are the same date
 	} elseif ($zeronegatives && $to < $from) {
-		$retval = '0 ' . wfMessage('dd-plural')->text();		// TO comes before FROM, so we use '0 days'
+		$retval = '0 ' . wfMessage('dd-plural')->text();	// TO comes before FROM, so we use '0 days'
 	} else {
 		$aDate = array();
 		$aDate = explode('-',$from);				// separate pages in format [<era>-]<yyyy>-<mm>-<dd>
